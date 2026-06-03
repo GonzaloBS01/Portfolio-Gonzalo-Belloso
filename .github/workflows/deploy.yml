@@ -17,6 +17,8 @@ concurrency:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    env:
+      VITE_FORMSPREE_ENDPOINT: ${{ secrets.FORMSPREE_ENDPOINT }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
