@@ -127,10 +127,18 @@ function HomePage({ cardVariants }) {
             <div key={s.category} className="skill-card">
               <h3>{s.category}</h3>
               <ul className="skill-logos">
-                {s.items.map((item) => (
-                  <li key={item.name}>
+                {s.items.map((item, j) => (
+                  <motion.li
+                    key={item.name}
+                    className="skill-item"
+                    initial={{ opacity: 0, y: 8, scale: 0.96 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{ delay: 0.04 * j + 0.06, duration: 0.36, type: 'spring', stiffness: 220, damping: 20 }}
+                    whileHover={{ scale: 1.12, y: -8, rotateZ: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
                     <img src={item.src} alt={item.name} title={item.name} />
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
             </div>

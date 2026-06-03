@@ -71,10 +71,19 @@ html, body {
   flex: 0 0 220px; /* fixed card width in the row */
   scroll-snap-align: start;
 }
+.skill-card { transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; will-change: transform; }
 .skill-card h3 { margin:0 0 12px; text-align:center; }
 .skill-logos { list-style:none; display:grid; grid-template-columns: repeat(auto-fit,minmax(56px,1fr)); gap:12px; padding:0; margin:0; }
 .skill-logos li { display:flex; align-items:center; justify-content:center; min-height:68px; border-radius:14px; background: rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03); }
+
 .skill-logos img { width:32px; height:32px; object-fit:contain; }
+
+/* Individual logo items (motion-enabled) */
+.skill-item { display:flex; align-items:center; justify-content:center; min-height:68px; border-radius:14px; background: rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03); }
+.skill-item img { width:36px; height:36px; }
+
+/* Fallback hover for non-JS or to complement motion hover */
+/* Removed group hover transform to keep skill group static; individual items still animate */
 
 /* PROJECTS */
 .projects-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); gap:20px; margin-top:8px; }
