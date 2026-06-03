@@ -117,7 +117,11 @@ function HomePage({ cardVariants }) {
 
       <section id="about" className="section about">
         <h2>Sobre mí</h2>
-        <p>Soy desarrollador junior deseando poder aprender y crecer como desarrollador web. Aprendo rápido y disfruto colaborar en equipos.</p>
+        <p>Desarrollador Junior Full-Stack aprendiendo diseño, desarrollo y despliegue de aplicaciones web robustas y escalables. Cuento con una buena base técnica en el ecosistema JavaScript/TypeScript, con experiencia práctica en el desarrollo de interfaces dinámicas mediante Angular y React, para mi TFG he usado Angular y para otros proyectos he usado React, así como en la construcción de arquitecturas backend eficientes con Node.js y Java.</p>
+        <br />
+        <p>Mi perfil combina el desarrollo de software con un profundo interés por la infraestructura y los entornos de sistemas. Dispongo de un poco de experiencia autónoma en la gestión de servidores, virtualización mediante Docker y configuración de redes.</p>
+        <br />
+        <p>Gracias a mi trayectoria previa en soporte técnico y resolución de incidencias en hardware y electrónica, he desarrollado una buena capacidad analítica y una gran adaptabilidad ante retos tecnológicos complejos.</p>
       </section>
 
       <section id="skills" className="section skills">
