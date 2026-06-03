@@ -132,6 +132,10 @@ html, body {
   overflow: auto;
 }
 
+.form-status { margin-top: 12px; color: var(--muted); font-size: 0.95rem; }
+.form-status.success { color: #86efac; }
+.form-status.error { color: #fca5a5; }
+
 /* Utilities */
 .link { color: var(--accent); text-decoration: none; }
 

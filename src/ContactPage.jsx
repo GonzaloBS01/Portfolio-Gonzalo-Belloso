@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 
 export default function ContactPage() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
+  const [status, setStatus] = useState(null) // null | 'sending' | 'success' | 'error'
 
   const handleChange = (event) => {
     const { name, value } = event.target
@@ -13,12 +14,35 @@ export default function ContactPage() {
   const handleSubmit = (event) => {
     event.preventDefault()
 
-    const subject = encodeURIComponent(`Mensaje de ${form.name || 'tu portfolio'}`)
-    const body = encodeURIComponent(
-      `Nombre: ${form.name}\nEmail: ${form.email}\n\nMensaje:\n${form.message}`,
-    )
+  // If a Formspree (or similar) endpoint is configured via env var, POST there.
+  const endpoint = import.meta.env.VITE_FORMSPREE_ENDPOINT
+  if (endpoint) {
+    setStatus('sending')
+    fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ name: form.name, email: form.email, message: form.message }),
+    })
+      .then((res) => {
+        if (res.ok) {
+          setStatus('success')
+          setForm({ name: '', email: '', message: '' })
+        } else {
+          throw new Error('Network response was not ok')
+        }
+      })
+      .catch(() => setStatus('error'))
 
-    window.location.href = `mailto:gonzalo.belloso.01@gmail.com?subject=${subject}&body=${body}`
+    return
+  }
+
+  // Fallback: open user's mail client via mailto
+  const subject = encodeURIComponent(`Mensaje de ${form.name || 'tu portfolio'}`)
+  const body = encodeURIComponent(
+    `Nombre: ${form.name}\nEmail: ${form.email}\n\nMensaje:\n${form.message}`,
+  )
+
+  window.location.href = `mailto:gonzalo.belloso.01@gmail.com?subject=${subject}&body=${body}`
   }
 
   return (
@@ -82,6 +106,9 @@ export default function ContactPage() {
             >
               Enviar mensaje
             </motion.button>
+            {status === 'sending' && <p className="form-status">Enviando…</p>}
+            {status === 'success' && <p className="form-status success">Mensaje enviado — gracias.</p>}
+            {status === 'error' && <p className="form-status error">Error al enviar. Prueba de nuevo o usa el email directo.</p>}
           </form>
         </motion.div>
 
