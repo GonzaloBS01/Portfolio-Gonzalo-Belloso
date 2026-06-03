@@ -54,12 +54,20 @@ body {
   margin: 0;
 }
 
+/* Full-page blue gradient background so the accent reaches the bottom */
+html, body {
+  height: 100%;
+  background: linear-gradient(180deg,#071028 0%, #07192a 100%);
+  background-attachment: fixed;
+}
+
 #root {
   width: 1126px;
   max-width: 100%;
   margin: 0 auto;
   text-align: center;
-  border-inline: 1px solid var(--border);
+  /* Removed side borders to avoid visible vertical lines in dark theme */
+  border-inline: none;
   min-height: 100svh;
   display: flex;
   flex-direction: column;
